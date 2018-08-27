@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_16dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".SaveLocalActivity"
+    tools:showIn="@layout/activity_save_local">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/file_name"/>
+
+        <EditText
+            android:id="@+id/edt_file_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/your_file_name"
+            android:padding="@dimen/dimen_16dp"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/file_content"/>
+
+        <EditText
+            android:inputType="textMultiLine"
+            android:id="@+id/edt_file_content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:hint="@string/your_file_content"
+            android:padding="@dimen/dimen_16dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
