@@ -30,7 +30,11 @@
         <activity
             android:name=".SaveLocalActivity"
             android:label="@string/title_activity_save_local"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SaveExternalActivity"
+            android:label="@string/title_activity_save_external"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.fj.mad06.adapter.LocalFileAdapter;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -21,6 +23,7 @@ public class LocalStorageActivity extends AppCompatActivity implements View.OnCl
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        Show back toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -28,17 +31,20 @@ public class LocalStorageActivity extends AppCompatActivity implements View.OnCl
         fab.setOnClickListener(this);
 
         ArrayList<String> listFile = new ArrayList<>();
-
+//        Select file path
+//        TODO: Before you create a new file text, you must create folder within name "files" in /data/data/com.fj.mad06/
         File path = new File("/data/data/com.fj.mad06/files");
-
+//        Add all file name on the folder into ArrayList
         File list[] = path.listFiles();
-        for (File aList : list) {
-            listFile.add(aList.getName());
-        }
+        if (list != null) {
+            for (File listFiles : list) {
+                listFile.add(listFiles.getName());
+            }
 
-        RecyclerView recyclerView = findViewById(R.id.rv_data);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new FileAdapter(this, listFile));
+            RecyclerView recyclerView = findViewById(R.id.rv_data);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(new LocalFileAdapter(this, listFile));
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.fj.mad06;
+package com.fj.mad06.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,19 +11,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.fj.mad06.R;
+import com.fj.mad06.SaveLocalActivity;
+
 import java.util.ArrayList;
 
-public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
+public class LocalFileAdapter extends RecyclerView.Adapter<LocalFileAdapter.ViewHolder> {
 
     private Context context;
     private ArrayList<String> listFile;
 
-    public FileAdapter(Context context, ArrayList<String> listFile) {
+    public LocalFileAdapter(Context context, ArrayList<String> listFile) {
         this.context = context;
         this.listFile = listFile;
     }
 
-    public ArrayList<String> getListFile() {
+    private ArrayList<String> getListFile() {
         return listFile;
     }
 
@@ -42,6 +45,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SaveLocalActivity.class);
+//                To send file name between activity
                 intent.putExtra("KeyFileName", getListFile().get(i));
                 context.startActivity(intent);
                 ((Activity)context).finish();

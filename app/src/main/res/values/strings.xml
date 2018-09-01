@@ -7,7 +7,8 @@
     <string name="title_activity_external_storage">External Storage</string>
     <string name="title_activity_save_local">Add Text File</string>
     <string name="file_name">File name</string>
-    <string name="your_file_name">Your file name...</string>
+    <string name="your_file_name">Your file name…</string>
     <string name="file_content">File Content</string>
-    <string name="your_file_content">Your file content...</string>
+    <string name="your_file_content">Your file content…</string>
+    <string name="title_activity_save_external">Add Text File</string>
 </resources>
