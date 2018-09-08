@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.fj.mad06.adapter.LocalFileAdapter;
 
@@ -20,14 +21,17 @@ public class LocalStorageActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_storage);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 //        Show back toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        TextView txtNoData = (TextView) findViewById(R.id.txt_no_data);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_data);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
         ArrayList<String> listFile = new ArrayList<>();
@@ -36,14 +40,19 @@ public class LocalStorageActivity extends AppCompatActivity implements View.OnCl
         File path = new File("/data/data/com.fj.mad06/files");
 //        Add all file name on the folder into ArrayList
         File list[] = path.listFiles();
-        if (list != null) {
-            for (File listFiles : list) {
-                listFile.add(listFiles.getName());
+        if (list.length != 0) {
+            for (File aList : list) {
+                listFile.add(aList.getName());
             }
 
-            RecyclerView recyclerView = findViewById(R.id.rv_data);
+            txtNoData.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(new LocalFileAdapter(this, listFile));
+        } else {
+            txtNoData.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
         }
     }
 

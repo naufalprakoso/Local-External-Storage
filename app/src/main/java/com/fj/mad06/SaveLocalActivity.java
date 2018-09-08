@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -27,17 +28,20 @@ public class SaveLocalActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_local);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
-        edtFileName = findViewById(R.id.edt_file_name);
-        edtFileContent = findViewById(R.id.edt_file_content);
+        ImageView imgDelete = (ImageView) findViewById(R.id.img_delete);
+        imgDelete.setOnClickListener(this);
+
+        edtFileName = (EditText) findViewById(R.id.edt_file_name);
+        edtFileContent = (EditText) findViewById(R.id.edt_file_content);
 
         getFileName = getIntent().getStringExtra("KeyFileName");
 
@@ -45,7 +49,11 @@ public class SaveLocalActivity extends AppCompatActivity implements View.OnClick
         if (getFileName == null) {
             isFileExist = false;
             getSupportActionBar().setTitle("Add Text File");
+
+            imgDelete.setVisibility(View.GONE);
         } else {
+            imgDelete.setVisibility(View.VISIBLE);
+
             getSupportActionBar().setTitle("Update Text File");
             edtFileName.setText(getFileName);
             edtFileName.setEnabled(false);
@@ -75,11 +83,15 @@ public class SaveLocalActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
+                saveIntoInternalStorage();
+                break;
+            case R.id.img_delete:
                 if (isFileExist) {
-                    this.deleteFile(getFileName);
-                    saveIntoInternalStorage();
-                } else {
-                    saveIntoInternalStorage();
+                    File deleteFile = new File("/data/data/com.fj.mad06/files/", getFileName);
+                    deleteFile.delete();
+
+                    Toast.makeText(this, "Successfully delete the text file", Toast.LENGTH_SHORT).show();
+                    backActivity();
                 }
                 break;
         }

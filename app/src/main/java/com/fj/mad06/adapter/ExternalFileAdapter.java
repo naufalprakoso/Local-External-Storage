@@ -67,8 +67,8 @@ public class ExternalFileAdapter extends RecyclerView.Adapter<ExternalFileAdapte
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txtFile = itemView.findViewById(R.id.txt_file_name);
-            cvItem = itemView.findViewById(R.id.cv_item);
+            txtFile = (TextView) itemView.findViewById(R.id.txt_file_name);
+            cvItem = (CardView) itemView.findViewById(R.id.cv_item);
         }
     }
 }

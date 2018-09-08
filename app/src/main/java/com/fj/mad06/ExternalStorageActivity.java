@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.fj.mad06.adapter.ExternalFileAdapter;
 
@@ -20,14 +22,17 @@ public class ExternalStorageActivity extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_external_storage);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 //        Show back toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        TextView txtNoData = (TextView) findViewById(R.id.txt_no_data);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_data);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
         ArrayList<String> listFile = new ArrayList<>();
@@ -37,14 +42,19 @@ public class ExternalStorageActivity extends AppCompatActivity implements View.O
         File path = new File("/sdcard/mad");
 //        Add all file name on the folder into ArrayList
         File list[] = path.listFiles();
-        if (list != null) {
+        if (list.length != 0) {
             for (File aList : list) {
                 listFile.add(aList.getName());
             }
 
-            RecyclerView recyclerView = findViewById(R.id.rv_data);
+            txtNoData.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(new ExternalFileAdapter(this, listFile));
+        } else {
+            txtNoData.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
         }
     }
 

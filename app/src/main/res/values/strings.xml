@@ -11,4 +11,7 @@
     <string name="file_content">File Content</string>
     <string name="your_file_content">Your file content…</string>
     <string name="title_activity_save_external">Add Text File</string>
+    <string name="title_activity_testingdoang">TESTINGDOANG</string>
+    <string name="no_data">There is no data</string>
+    <string name="image_delete_text_file">Image Delete Text File</string>
 </resources>

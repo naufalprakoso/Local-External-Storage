@@ -66,8 +66,8 @@ public class LocalFileAdapter extends RecyclerView.Adapter<LocalFileAdapter.View
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txtFile = itemView.findViewById(R.id.txt_file_name);
-            cvItem = itemView.findViewById(R.id.cv_item);
+            txtFile = (TextView) itemView.findViewById(R.id.txt_file_name);
+            cvItem = (CardView) itemView.findViewById(R.id.cv_item);
         }
     }
 }

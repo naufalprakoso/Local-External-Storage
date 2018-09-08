@@ -4,4 +4,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
     <dimen name="dimen_150dp">150dp</dimen>
+    <dimen name="dimen_24sp">24sp</dimen>
 </resources>

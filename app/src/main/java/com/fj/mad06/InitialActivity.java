@@ -13,8 +13,8 @@ public class InitialActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
 
-        Button btnExternalStorage = findViewById(R.id.btn_external_storage);
-        Button btnLocalStorage = findViewById(R.id.btn_local_storage);
+        Button btnExternalStorage = (Button) findViewById(R.id.btn_external_storage);
+        Button btnLocalStorage = (Button) findViewById(R.id.btn_local_storage);
 
         btnExternalStorage.setOnClickListener(this);
         btnLocalStorage.setOnClickListener(this);
