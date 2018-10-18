@@ -42,19 +42,21 @@ public class ExternalStorageActivity extends AppCompatActivity implements View.O
         File path = new File("/sdcard/mad");
 //        Add all file name on the folder into ArrayList
         File list[] = path.listFiles();
-        if (list.length != 0) {
-            for (File aList : list) {
-                listFile.add(aList.getName());
+        if (list != null){
+            if (list.length != 0) {
+                for (File aList : list) {
+                    listFile.add(aList.getName());
+                }
+
+                txtNoData.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setAdapter(new ExternalFileAdapter(this, listFile));
+            } else {
+                txtNoData.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             }
-
-            txtNoData.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(new ExternalFileAdapter(this, listFile));
-        } else {
-            txtNoData.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
         }
     }
 

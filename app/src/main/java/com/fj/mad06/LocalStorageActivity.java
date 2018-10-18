@@ -40,19 +40,21 @@ public class LocalStorageActivity extends AppCompatActivity implements View.OnCl
         File path = new File("/data/data/com.fj.mad06/files");
 //        Add all file name on the folder into ArrayList
         File list[] = path.listFiles();
-        if (list.length != 0) {
-            for (File aList : list) {
-                listFile.add(aList.getName());
+        if (list != null){
+            if (list.length != 0) {
+                for (File aList : list) {
+                    listFile.add(aList.getName());
+                }
+
+                txtNoData.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setAdapter(new LocalFileAdapter(this, listFile));
+            } else {
+                txtNoData.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             }
-
-            txtNoData.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(new LocalFileAdapter(this, listFile));
-        } else {
-            txtNoData.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
         }
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MAD06</string>
+    <string name="app_name">Local External Storage</string>
     <string name="title">Save data to local and external storage</string>
     <string name="local_storage">Local Storage</string>
     <string name="external_storage">External Storage</string>
